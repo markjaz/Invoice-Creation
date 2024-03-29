@@ -45,6 +45,7 @@ for filepath in filepaths:
     pdf.cell(w=30, h=8, txt='Unit Price', align='R', border=True)
     pdf.cell(w=30, h=8, txt='Total Price', align='R', ln=1, border=True)
     # Fill in the actual data for each column
+    total_amt_due = 0
     for index, row in df.iterrows():
         pdf.set_font("Helvetica", size=10)
         pdf.set_text_color(96, 96, 96)
@@ -59,6 +60,13 @@ for filepath in filepaths:
                  border=True)
         pdf.cell(w=30, h=8, txt=str(f'$ {row['total_price']:,.2f}'), align='R',
                  ln=1, border=True)
+        total_amt_due += row['total_price']
 
+    # Calculate the sum due for all items.
+    pdf.set_font("Helvetica", size=10, style='B')
+    pdf.set_text_color(96, 96, 96)
+    pdf.cell(w=160, h=8, txt='Total Amount Due:', align='R', border='True')
+    pdf.cell(w=30, h=8,
+             txt=str(f'$ {total_amt_due:,.2f}'), align='R', border='True')
     pdf.output(f"PDF Invoices/{filename}.pdf")
     print(f"Created PDF Invoices/{filename}.pdf")
