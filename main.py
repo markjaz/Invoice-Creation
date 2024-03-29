@@ -27,6 +27,9 @@ for filepath in filepaths:
     pdf.cell(w=50, h=8, txt=f"Invoice date: ", align='R', border=False)
     pdf.cell(w=50, h=8, txt=invoice_date, align='L', border=False)
 
+    # Put a logo image on the page
+    pdf.image('1115-_5D1-9629-fu jin.png', x=155, y=2, w=50)
+
     # Note that if we were OK with the preset column names and just needed
     # to replace the underscores with spaces and capitalize the names,
     # a list comprehension would do it.  Since 'df.columns' is an iterable
